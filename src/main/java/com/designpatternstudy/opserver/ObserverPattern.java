@@ -1,6 +1,5 @@
 package com.designpatternstudy.opserver;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -10,7 +9,16 @@ import java.util.Random;
  * @package : com.designpatternstudy.opserver
  * @since : 20.05.24
  */
+/*
+ - 객체 간의 일대다 의존성을 정의
+ - 이 패턴을 사용하면 하나의 객체 상태가 변경될 때, 그 객체에 의존하는 다른 객체들이 자동으로 통지받고 갱신
+ - 주로 이벤트 핸들링 시스템이나 데이터의 변경을 다른 객체들에게 전파해야 하는 경우에 사용
+ */
 public class ObserverPattern {
+
+  private static DiceGame getDiceGame(int bound) {
+    return new UnFairDiceGame(bound);
+  }
 
   public static void main(String[] args) {
     int magicNumber = 4;
@@ -29,13 +37,8 @@ public class ObserverPattern {
     }
   }
 
-  private static DiceGame getDiceGame(int bound) {
-    return new UnFairDiceGame(bound);
-  }
-
-  /* ============================================================ */
   static abstract class Player {
-    private String name;
+    private final String name;
 
     public Player(String name) {
       this.name = name;
@@ -48,7 +51,7 @@ public class ObserverPattern {
     public abstract void update(int diceNumber);
   }
 
-  static class OddBettingPlayer extends Player{
+  static class OddBettingPlayer extends Player {
     public OddBettingPlayer(String name) {
       super(name);
     }
@@ -61,7 +64,7 @@ public class ObserverPattern {
     }
   }
 
-  static class EvenBettingPlayer extends Player{
+  static class EvenBettingPlayer extends Player {
     public EvenBettingPlayer(String name) {
       super(name);
     }
@@ -74,11 +77,8 @@ public class ObserverPattern {
     }
   }
 
-  static class PickBettingPlayer extends Player{
+  static class PickBettingPlayer extends Player {
     private int picNum;
-    public PickBettingPlayer(String name) {
-      super(name);
-    }
 
     public PickBettingPlayer(String name, int picNum) {
       super(name);
@@ -92,12 +92,11 @@ public class ObserverPattern {
       }
     }
   }
-  /* ============================================================ */
-
-
 
 
   /* ============================================================ */
+
+
   static abstract class DiceGame {
     protected List<Player> players = new LinkedList<>();
 
@@ -108,37 +107,44 @@ public class ObserverPattern {
     public abstract void play();
   }
 
+  /*
+    - 공정한 게임
+   */
   static class FairDiceGame extends DiceGame {
-    private Random random = new Random();
+    private final Random random = new Random();
 
+    // 게임 결과를 모든 Player에게 전파
     @Override
     public void play() {
-      int diceNumber  = random.nextInt(6) + 1;
+      int diceNumber = getDiceNumber();
       System.out.println("주사위 던졌다. = " + diceNumber);
-
-      Iterator<Player> iterator = players.iterator();
-      while (iterator.hasNext()) {
-        iterator.next().update(diceNumber);
+      for (Player player : players) {
+        player.update(diceNumber);
       }
+    }
+
+    // 공정한 주사위 번호 생성
+    private int getDiceNumber() {
+      return random.nextInt(6) + 1;
     }
   }
 
   /*
-    - 특정한 숫자만 나오는 게임
+    - 불공정한 게임
    */
   static class UnFairDiceGame extends DiceGame {
+
     private final int NUMBER;
 
     public UnFairDiceGame(int number) {
       this.NUMBER = number;
     }
 
+    // 게임 결과를 모든 Player에게 전파
     @Override
     public void play() {
       System.out.println("주사위 던졌다. = " + NUMBER);
-      for (Player player : players) {
-        player.update(NUMBER);
-      }
+      players.forEach(player -> player.update(NUMBER));
     }
   }
   /* ============================================================ */
