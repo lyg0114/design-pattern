@@ -13,20 +13,24 @@ import java.util.Random;
 public class ObserverPattern {
 
   public static void main(String[] args) {
-    DiceGame diceGame = new FairDiceGame();
+    int magicNumber = 4;
 
-    Player player1 = new EvenBettingPlayer("짝궁댕이");
-    Player player2 = new OddBettingPlayer("홀아비");
-    Player player3 = new OddBettingPlayer("홀쭉이");
+    DiceGame diceGame = getDiceGame(magicNumber);
+    diceGame.addPlayer(new EvenBettingPlayer("짝궁댕이"));
+    diceGame.addPlayer(new OddBettingPlayer("홀아비"));
+    diceGame.addPlayer(new OddBettingPlayer("홀쭉이"));
+    diceGame.addPlayer(new PickBettingPlayer("타짜", magicNumber));
 
-    diceGame.addPlayer(player1);
-    diceGame.addPlayer(player2);
-    diceGame.addPlayer(player3);
-
+    System.out.println("############");
+    System.out.println("게임 시작");
+    System.out.println("############");
     for (int i = 0; i < 5; i++) {
       diceGame.play();
     }
+  }
 
+  private static DiceGame getDiceGame(int bound) {
+    return new UnFairDiceGame(bound);
   }
 
   /* ============================================================ */
@@ -69,6 +73,25 @@ public class ObserverPattern {
       }
     }
   }
+
+  static class PickBettingPlayer extends Player{
+    private int picNum;
+    public PickBettingPlayer(String name) {
+      super(name);
+    }
+
+    public PickBettingPlayer(String name, int picNum) {
+      super(name);
+      this.picNum = picNum;
+    }
+
+    @Override
+    public void update(int diceNumber) {
+      if (diceNumber == picNum) {
+        System.out.println(getName() + " win!");
+      }
+    }
+  }
   /* ============================================================ */
 
 
@@ -96,6 +119,25 @@ public class ObserverPattern {
       Iterator<Player> iterator = players.iterator();
       while (iterator.hasNext()) {
         iterator.next().update(diceNumber);
+      }
+    }
+  }
+
+  /*
+    - 특정한 숫자만 나오는 게임
+   */
+  static class UnFairDiceGame extends DiceGame {
+    private final int NUMBER;
+
+    public UnFairDiceGame(int number) {
+      this.NUMBER = number;
+    }
+
+    @Override
+    public void play() {
+      System.out.println("주사위 던졌다. = " + NUMBER);
+      for (Player player : players) {
+        player.update(NUMBER);
       }
     }
   }
