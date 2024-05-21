@@ -6,8 +6,11 @@ package com.designpatternstudy.strategy;
  * @since : 18.05.24
  */
 
-//  - 어떤 하나의 기능을 구성하는 특정 부분을 실행중 다른것으로 효과적으로 변경하는 전략
-//  - 인터페이스를 활용해 유연한 구조 생성 - 필요할 경우 전략을 변경할 수 있다.
+/*
+ [전략패턴]
+ - 어떤 하나의 기능을 구성하는 특정 부분을 실행중 다른것으로 효과적으로 변경하는 전략
+ - 인터페이스를 활용해 유연한 구조 생성 - 필요할 경우 전략을 변경할 수 있다.
+ */
 public class StrategyPattern {
 
   public static void main(String[] args) {
