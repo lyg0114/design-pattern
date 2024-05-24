@@ -2,15 +2,18 @@
 
 ### Links
 
-| 패턴                                  | 소스 코드                                                                                            | 해설                                                                                                              |
-| ------------------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Strategy Pattern (전략 패턴)          | [StrategyPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fstrategy%2FStrategyPattern.java)    | [해설](https://www.youtube.com/watch?v=Wao5HiXM_Cg&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=3&t=83s&pp=iAQB) |
-| Proxy Pattern (프록시 패턴)           | [ProxyPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fproxy%2FProxyPattern.java)             | [해설](https://www.youtube.com/watch?v=NoRPG06c48U&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=15&t=3s)         |
-| Decorator Pattern (데코레이터 패턴)   | [DecoratorPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fdecorator%2FDecoratorPattern.java) | [해설](https://www.youtube.com/watch?v=UTmY_oB4V8I&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=15&pp=iAQB)      |
-| Observer Pattern (옵저버 패턴)        | [ObserverPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fopserver%2FObserverPattern.java)    | [해설](https://www.youtube.com/watch?v=4WO95iHQTx8&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=11)              |
-| Template Pattern (템플릿 패턴)        | [TemplatePattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Ftemplate%2FTemplatePattern.java)    | [해설](https://www.youtube.com/watch?v=hPTqWJm51Vs&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=4&loop=0)        |
-| Singleton Pattern (싱글톤 패턴)       | [SingletonPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fsingleton%2FSingletonPattern.java) | [해설](https://www.youtube.com/watch?v=kAnoWt7Uato&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=7&loop=0)        |
+| 패턴                            | 소스 코드                                                                                            | 해설                                                                                                              |
+|-------------------------------| ---------------------------------------------------------------------------------------------------- |-----------------------------------------------------------------------------------------------------------------|
+| Strategy Pattern (전략 패턴)      | [StrategyPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fstrategy%2FStrategyPattern.java)    | [해설](https://www.youtube.com/watch?v=Wao5HiXM_Cg&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=3&t=83s&pp=iAQB) |
+| Proxy Pattern (프록시 패턴)        | [ProxyPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fproxy%2FProxyPattern.java)             | [해설](https://www.youtube.com/watch?v=NoRPG06c48U&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=15&t=3s)         |
+| Decorator Pattern (데코레이터 패턴)  | [DecoratorPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fdecorator%2FDecoratorPattern.java) | [해설](https://www.youtube.com/watch?v=UTmY_oB4V8I&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=15&pp=iAQB)      |
+| Observer Pattern (옵저버 패턴)     | [ObserverPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fopserver%2FObserverPattern.java)    | [해설](https://www.youtube.com/watch?v=4WO95iHQTx8&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=11)              |
+| Template Pattern (템플릿 패턴)     | [TemplatePattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Ftemplate%2FTemplatePattern.java)    | [해설](https://www.youtube.com/watch?v=hPTqWJm51Vs&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=4&loop=0)        |
+| Singleton Pattern (싱글톤 패턴)    | [SingletonPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fsingleton%2FSingletonPattern.java) | [해설](https://www.youtube.com/watch?v=kAnoWt7Uato&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=7&loop=0)        |
 | flyweight Pattern (플라이웨이트 패턴) | [flyweightPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fflyweight%2FflyweightPattern.java) | [해설](https://www.youtube.com/watch?v=tYEg5vYJgQ4&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=8&loop=0)        |
+| Bridge Pattern(브릿지 패턴)        |[BridgePattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fbridge%2FBridgePatternV2.java)| [해설](https://www.youtube.com/watch?v=IJ96VeNPTyM&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=6)                                                                                                          |
+
+
 
 ##### REF
 
