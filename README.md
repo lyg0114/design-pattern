@@ -12,6 +12,7 @@
 | Singleton Pattern (싱글톤 패턴)    | [SingletonPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fsingleton%2FSingletonPattern.java) | [해설](https://www.youtube.com/watch?v=kAnoWt7Uato&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=7&loop=0)        |
 | flyweight Pattern (플라이웨이트 패턴) | [flyweightPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fflyweight%2FflyweightPattern.java) | [해설](https://www.youtube.com/watch?v=tYEg5vYJgQ4&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=8&loop=0)        |
 | Bridge Pattern(브릿지 패턴)        |[BridgePattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fbridge%2FBridgePatternV2.java)| [해설](https://www.youtube.com/watch?v=IJ96VeNPTyM&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=6)                                                                                                          |
+| Composite Pattern(컴포짓 패턴)     |[CompositePattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fcomposite%2FCompositePattern.java)| [해설](https://www.youtube.com/watch?v=g96bJvVDZPs&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=9&loop=0)                                                                                                          |
 
 
 
