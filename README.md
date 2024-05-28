@@ -19,7 +19,7 @@
 | flyweight | [flyweightPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fflyweight%2FflyweightPattern.java) | [해설](https://www.youtube.com/watch?v=tYEg5vYJgQ4&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=8&loop=0)   |
 | Bridge    | [BridgePattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fbridge%2FBridgePatternV2.java)        | [해설](https://www.youtube.com/watch?v=IJ96VeNPTyM&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=6)          |
 | Composite | [CompositePattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fcomposite%2FCompositePattern.java) | [해설](https://www.youtube.com/watch?v=g96bJvVDZPs&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=9&loop=0)   |
-| Adapter   | [x]()                                                                                                | [x]()                                                                                                      |
+| Adapter   | [AdapterPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fadapter%2FAdapterPattern.java)                                                                                                | [해설](https://www.youtube.com/watch?v=7MSzyqhrO-A&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=5&loop=0)                                                                                                     |
 | Facade    | [x]()                                                                                                | [x]()                                                                                                      |
 
 ### 행위
