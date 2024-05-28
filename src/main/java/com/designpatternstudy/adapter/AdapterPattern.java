@@ -20,6 +20,8 @@ public class AdapterPattern {
     animals.add(new Dog("댕이"));
     animals.add(new Cat("솜털이"));
     animals.add(new Cat("휴휴"));
+//    animals.add(new Tiger("휴휴"));
+    animals.add(new TigerAdapter("타이온"));
 
     for (Animal animal : animals) {
       animal.sound();
@@ -36,7 +38,6 @@ public class AdapterPattern {
 
     public abstract void sound();
   }
-
 
   static class Dog extends Animal {
 
@@ -61,4 +62,39 @@ public class AdapterPattern {
       System.out.println(name + " meeow");
     }
   }
+
+  static class TigerAdapter extends Animal{
+    private Tiger tiger;
+
+    public TigerAdapter(String name) {
+      super(name);
+      tiger = new Tiger();
+      tiger.setName(name);
+    }
+
+    @Override
+    public void sound() {
+      System.out.print(tiger.getName() + " ");
+      tiger.roar();
+    }
+  }
+
+
+  static class Tiger {
+
+    private String name;
+
+    public String getName() {
+      return name;
+    }
+
+    public void setName(String name) {
+      this.name = name;
+    }
+
+    void roar() {
+      System.out.println("growl");
+    }
+  }
+
 }
