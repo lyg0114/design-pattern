@@ -2,13 +2,14 @@
 
 ### 생성
 
-| 패턴               | 소스 코드                                                                                                | 해설                                                                                                       |
-|------------------|------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| Singleton        | [SingletonPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fsingleton%2FSingletonPattern.java) | [해설](https://www.youtube.com/watch?v=kAnoWt7Uato&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=7&loop=0) |
-| Factory Metod    | [FactoryMethodPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Ffactorymethod%2FFactoryMethodPattern.java)                                                                                                | [해설](https://www.youtube.com/watch?v=QOX10ntWj5Y&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=10&loop=0)                                                                                                   |
-| Abstract Factory | [abstractfactoryPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fabstractfactory%2FabstractfactoryPattern.java)                                                                                                | [해설](https://www.youtube.com/watch?v=pmKHiAIwhag&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=22&loop=0)                                                                                                   |
-| Prototype        | [x]()                                                                                                | [해설]()                                                                                                   |
-| Builder          | [x]()                                                                                                | [해설]()                                                                                                   |
+| 패턴               | 소스 코드                                                                                                                  | 해설                                                                                                        |
+|------------------|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| Singleton        | [SingletonPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fsingleton%2FSingletonPattern.java)                   | [해설](https://www.youtube.com/watch?v=kAnoWt7Uato&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=7&loop=0)  |
+| Factory Metod    | [FactoryMethodPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Ffactorymethod%2FFactoryMethodPattern.java)       | [해설](https://www.youtube.com/watch?v=QOX10ntWj5Y&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=10&loop=0) |
+| Abstract Factory | [abstractfactoryPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fabstractfactory%2FabstractfactoryPattern.java) | [해설](https://www.youtube.com/watch?v=pmKHiAIwhag&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=22&loop=0) |
+| Prototype        | [x]()                                                                                                                  | [해설]()                                                                                                    |
+| Builder - 1      | [BuilderPattern_1](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fbuilder%2FBuilderPattern_1.java)                     | [해설](https://www.youtube.com/watch?v=_GCiJAFU2DU&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=20&loop=0) |
+| Builder - 2      | [BuilderPattern_2](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fbuilder%2FBuilderPattern_2.java)                     | [해설](https://www.youtube.com/watch?v=sg_6GWRBRas&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=20&loop=0) |
 
 ### 구조
 
@@ -19,7 +20,7 @@
 | flyweight | [flyweightPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fflyweight%2FflyweightPattern.java) | [해설](https://www.youtube.com/watch?v=tYEg5vYJgQ4&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=8&loop=0)   |
 | Bridge    | [BridgePattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fbridge%2FBridgePatternV2.java)        | [해설](https://www.youtube.com/watch?v=IJ96VeNPTyM&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=6)          |
 | Composite | [CompositePattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fcomposite%2FCompositePattern.java) | [해설](https://www.youtube.com/watch?v=g96bJvVDZPs&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=9&loop=0)   |
-| Adapter   | [AdapterPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fadapter%2FAdapterPattern.java)                                                                                                | [해설](https://www.youtube.com/watch?v=7MSzyqhrO-A&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=5&loop=0)                                                                                                     |
+| Adapter   | [AdapterPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fadapter%2FAdapterPattern.java)       | [해설](https://www.youtube.com/watch?v=7MSzyqhrO-A&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=5&loop=0)   |
 | Facade    | [x]()                                                                                                | [x]()                                                                                                      |
 
 ### 행위
