@@ -1,4 +1,4 @@
-package com.designpatternstudy.composite;
+package com.designpatternstudy.structural.composite;
 
 import java.util.ArrayList;
 import java.util.Iterator;

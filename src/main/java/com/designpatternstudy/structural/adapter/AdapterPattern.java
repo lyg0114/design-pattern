@@ -1,4 +1,4 @@
-package com.designpatternstudy.adapter;
+package com.designpatternstudy.structural.adapter;
 
 import java.util.ArrayList;
 import java.util.List;

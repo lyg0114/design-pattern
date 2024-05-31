@@ -1,4 +1,4 @@
-package com.designpatternstudy.template;
+package com.designpatternstudy.behavioral.template;
 
 import java.util.List;
 

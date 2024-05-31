@@ -1,4 +1,4 @@
-package com.designpatternstudy.strategy;
+package com.designpatternstudy.behavioral.strategy;
 
 /**
  * @author : iyeong-gyo

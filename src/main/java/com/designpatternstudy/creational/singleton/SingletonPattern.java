@@ -1,4 +1,4 @@
-package com.designpatternstudy.singleton;
+package com.designpatternstudy.creational.singleton;
 
 /**
  * @author : iyeong-gyo

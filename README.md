@@ -1,6 +1,6 @@
 # Design Pattern Study
 
-### 생성
+### 생성패턴 (Creational Patterns)
 
 | 패턴               | 소스 코드                                                                                                                  | 해설                                                                                                        |
 |------------------|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
@@ -11,7 +11,7 @@
 | Builder - 1      | [BuilderPattern_1](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fbuilder%2FBuilderPattern_1.java)                     | [해설](https://www.youtube.com/watch?v=_GCiJAFU2DU&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=20&loop=0) |
 | Builder - 2      | [BuilderPattern_2](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fbuilder%2FBuilderPattern_2.java)                     | [해설](https://www.youtube.com/watch?v=sg_6GWRBRas&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=20&loop=0) |
 
-### 구조
+### 구조패턴 (Structural Patterns)
 
 | 패턴        | 소스 코드                                                                                                | 해설                                                                                                         |
 |-----------|------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
@@ -23,7 +23,7 @@
 | Adapter   | [AdapterPattern](src%2Fmain%2Fjava%2Fcom%2Fdesignpatternstudy%2Fadapter%2FAdapterPattern.java)       | [해설](https://www.youtube.com/watch?v=7MSzyqhrO-A&list=PLe6NQuuFBu7FhPfxkjDd2cWnTy2y_w_jZ&index=5&loop=0)   |
 | Facade    | [x]()                                                                                                | [x]()                                                                                                      |
 
-### 행위
+### 행위 패턴 (Behavioral Patterns)
 
 | 패턴                      | 소스 코드                                                                                             | 해설                                                                                                              |
 |-------------------------|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|

@@ -1,4 +1,4 @@
-package com.designpatternstudy.decorator;
+package com.designpatternstudy.structural.decorator;
 
 import java.util.ArrayList;
 import java.util.List;

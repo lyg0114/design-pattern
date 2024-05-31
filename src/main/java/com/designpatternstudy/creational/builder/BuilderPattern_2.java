@@ -1,4 +1,4 @@
-package com.designpatternstudy.builder;
+package com.designpatternstudy.creational.builder;
 
 /**
  * @author : iyeong-gyo

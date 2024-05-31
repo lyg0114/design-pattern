@@ -1,4 +1,4 @@
-package com.designpatternstudy.proxy;
+package com.designpatternstudy.structural.proxy;
 
 import java.util.ArrayList;
 import java.util.List;

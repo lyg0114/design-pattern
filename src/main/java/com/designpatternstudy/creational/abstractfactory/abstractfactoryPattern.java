@@ -1,4 +1,4 @@
-package com.designpatternstudy.abstractfactory;
+package com.designpatternstudy.creational.abstractfactory;
 
 /**
  * @author : iyeong-gyo

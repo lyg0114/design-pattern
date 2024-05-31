@@ -1,4 +1,4 @@
-package com.designpatternstudy.factorymethod;
+package com.designpatternstudy.creational.factorymethod;
 
 import java.util.HashMap;
 

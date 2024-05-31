@@ -1,4 +1,4 @@
-package com.designpatternstudy.prototype;
+package com.designpatternstudy.creational.prototype;
 
 import java.util.ArrayList;
 import java.util.Iterator;

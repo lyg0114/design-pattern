@@ -1,4 +1,4 @@
-package com.designpatternstudy.opserver;
+package com.designpatternstudy.behavioral.observer;
 
 import java.util.LinkedList;
 import java.util.List;

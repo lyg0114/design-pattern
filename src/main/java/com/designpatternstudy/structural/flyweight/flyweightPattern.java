@@ -1,4 +1,4 @@
-package com.designpatternstudy.flyweight;
+package com.designpatternstudy.structural.flyweight;
 
 import static java.lang.Character.getNumericValue;
 import static java.lang.String.format;
