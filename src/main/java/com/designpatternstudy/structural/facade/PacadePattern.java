@@ -20,30 +20,38 @@ import java.util.Map;
 public class PacadePattern {
 
   public static void main(String[] args) {
-    DBMS dbms = new DBMS();
-    Cache cache = new Cache();
-
     String name = "lizzy";
+    Facade facade = new Facade();
+    facade.run(name);
+  }
 
-    Row row = cache.get(name);
-    if (row == null) {
-      row = dbms.query(name);
-      if (row != null) {
-        cache.put(row);
+  static class Facade {
+
+    private DBMS dbms = new DBMS();
+    private Cache cache = new Cache();
+
+    public void run(String name) {
+      Row row = cache.get(name);
+      if (row == null) {
+        row = dbms.query(name);
+        if (row != null) {
+          cache.put(row);
+        }
       }
-    }
 
-    if (row != null) {
-      Message message = new Message(row);
-      System.out.println(message.makeName());
-      System.out.println(message.makeBirthday());
-      System.out.println(message.makeEmail());
-    } else {
-      System.out.println(name + " is not exists");
+      if (row != null) {
+        Message message = new Message(row);
+        System.out.println(message.makeName());
+        System.out.println(message.makeBirthday());
+        System.out.println(message.makeEmail());
+      } else {
+        System.out.println(name + " is not exists");
+      }
     }
   }
 
   static class Row {
+
     private String name;
     private String birthday;
     private String email;
@@ -68,6 +76,7 @@ public class PacadePattern {
   }
 
   static class DBMS {
+
     private Map<String, Row> db = new HashMap<>();
 
     public DBMS() {
@@ -88,6 +97,7 @@ public class PacadePattern {
   }
 
   static class Cache {
+
     private Map<String, Row> cache = new HashMap<>();
 
     public void put(Row row) {
