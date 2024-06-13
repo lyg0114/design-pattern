@@ -19,117 +19,117 @@ import java.util.Map;
  */
 public class PacadePattern {
 
-  public static void main(String[] args) {
-    String name = "lizzy";
-    Facade facade = new Facade();
-    facade.run(name);
-  }
+	public static void main(String[] args) {
+		String name = "lizzy";
+		Facade facade = new Facade();
+		facade.run(name);
+	}
 
-  static class Facade {
+	static class Facade {
 
-    private DBMS dbms = new DBMS();
-    private Cache cache = new Cache();
+		private DBMS dbms = new DBMS();
+		private Cache cache = new Cache();
 
-    public void run(String name) {
-      Row row = cache.get(name);
-      if (row == null) {
-        row = dbms.query(name);
-        if (row != null) {
-          cache.put(row);
-        }
-      }
+		public void run(String name) {
+			Row row = cache.get(name);
+			if (row == null) {
+				row = dbms.query(name);
+				if (row != null) {
+					cache.put(row);
+				}
+			}
 
-      if (row != null) {
-        Message message = new Message(row);
-        System.out.println(message.makeName());
-        System.out.println(message.makeBirthday());
-        System.out.println(message.makeEmail());
-      } else {
-        System.out.println(name + " is not exists");
-      }
-    }
-  }
+			if (row != null) {
+				Message message = new Message(row);
+				System.out.println(message.makeName());
+				System.out.println(message.makeBirthday());
+				System.out.println(message.makeEmail());
+			} else {
+				System.out.println(name + " is not exists");
+			}
+		}
+	}
 
-  static class Row {
+	static class Row {
 
-    private String name;
-    private String birthday;
-    private String email;
+		private String name;
+		private String birthday;
+		private String email;
 
-    public Row(String name, String birthday, String email) {
-      this.name = name;
-      this.birthday = birthday;
-      this.email = email;
-    }
+		public Row(String name, String birthday, String email) {
+			this.name = name;
+			this.birthday = birthday;
+			this.email = email;
+		}
 
-    public String getName() {
-      return name;
-    }
+		public String getName() {
+			return name;
+		}
 
-    public String getBirthday() {
-      return birthday;
-    }
+		public String getBirthday() {
+			return birthday;
+		}
 
-    public String getEmail() {
-      return email;
-    }
-  }
+		public String getEmail() {
+			return email;
+		}
+	}
 
-  static class DBMS {
+	static class DBMS {
 
-    private Map<String, Row> db = new HashMap<>();
+		private Map<String, Row> db = new HashMap<>();
 
-    public DBMS() {
-      db.put("jane", new Row("Jane", "1990-02-14", "jane@google.com"));
-      db.put("robert", new Row("robert", "1992-02-14", "robert@google.com"));
-      db.put("kyle", new Row("kyle", "1993-02-14", "kyle@google.com"));
-    }
+		public DBMS() {
+			db.put("jane", new Row("Jane", "1990-02-14", "jane@google.com"));
+			db.put("robert", new Row("robert", "1992-02-14", "robert@google.com"));
+			db.put("kyle", new Row("kyle", "1993-02-14", "kyle@google.com"));
+		}
 
-    public Row query(String name) {
-      try {
-        Thread.sleep(1000);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
+		public Row query(String name) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
 
-      return db.get(name.toLowerCase());
-    }
-  }
+			return db.get(name.toLowerCase());
+		}
+	}
 
-  static class Cache {
+	static class Cache {
 
-    private Map<String, Row> cache = new HashMap<>();
+		private Map<String, Row> cache = new HashMap<>();
 
-    public void put(Row row) {
-      cache.put(row.getName(), row);
-    }
+		public void put(Row row) {
+			cache.put(row.getName(), row);
+		}
 
-    public Row get(String name) {
-      return cache.get(name);
-    }
-  }
+		public Row get(String name) {
+			return cache.get(name);
+		}
+	}
 
-  static class Message {
+	static class Message {
 
-    private Row row;
+		private Row row;
 
-    public Message(Row row) {
-      this.row = row;
-    }
+		public Message(Row row) {
+			this.row = row;
+		}
 
-    public String makeName() {
-      return "Name : \"" + row.getName() + "\"";
-    }
+		public String makeName() {
+			return "Name : \"" + row.getName() + "\"";
+		}
 
-    public String makeBirthday() {
-      return "Birthday: " + row.getBirthday();
-    }
+		public String makeBirthday() {
+			return "Birthday: " + row.getBirthday();
+		}
 
-    public String makeEmail() {
-      return "Email:" + row.getEmail();
-    }
+		public String makeEmail() {
+			return "Email:" + row.getEmail();
+		}
 
-  }
+	}
 }
 
 

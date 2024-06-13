@@ -1,8 +1,9 @@
 package com.designpatternstudy.behavioral.command;
 
-import com.designpatternstudy.behavioral.command.CommandPattern.ColorCommand.Color;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.designpatternstudy.behavioral.command.CommandPattern.ColorCommand.Color;
 
 /**
  * @author : iyeong-gyo
@@ -17,107 +18,113 @@ import java.util.List;
  */
 public class CommandPattern {
 
-  public static void main(String[] args) {
-    ClearCommand clearCommand = new ClearCommand();
-    ColorCommand yellowColorCommand = new ColorCommand(Color.YELLOW);
-    ColorCommand blueColorCommand = new ColorCommand(Color.BLUE);
-    PrintCommand printCmd = new PrintCommand("Hello World");
-    MoveCommand moveCommand = new MoveCommand(3, 5);
+	public static void main(String[] args) {
+		ClearCommand clearCommand = new ClearCommand();
+		ColorCommand yellowColorCommand = new ColorCommand(Color.YELLOW);
+		ColorCommand blueColorCommand = new ColorCommand(Color.BLUE);
+		PrintCommand printCmd = new PrintCommand("Hello World");
+		MoveCommand moveCommand = new MoveCommand(3, 5);
 
-    CommandGroup commandGroup = new CommandGroup();
-    commandGroup.add(clearCommand);
-    commandGroup.add(yellowColorCommand);
-    commandGroup.add(printCmd);
-    commandGroup.add(blueColorCommand);
-    commandGroup.add(printCmd);
-    commandGroup.run();
+		CommandGroup commandGroup = new CommandGroup();
+		commandGroup.add(clearCommand);
+		commandGroup.add(yellowColorCommand);
+		commandGroup.add(printCmd);
+		commandGroup.add(blueColorCommand);
+		commandGroup.add(printCmd);
+		commandGroup.run();
 
-  }
+	}
 
-  interface Command {
-    void run();
-//    void undo();
-  }
+	interface Command {
+		void run();
+		//    void undo();
+	}
 
-  static class CommandGroup implements Command {
-    List<Command> commands = new ArrayList<>();
+	static class CommandGroup implements Command {
+		List<Command> commands = new ArrayList<>();
 
-    public void add(Command command) {
-      commands.add(command);
-    }
+		public void add(Command command) {
+			commands.add(command);
+		}
 
-    @Override
-    public void run() {
-      int cntCommands = commands.size();
-      for (int i = 0; i < cntCommands; i++) {
-        Command command = commands.get(i);
-        command.run();
-      }
-    }
-  }
+		@Override
+		public void run() {
+			int cntCommands = commands.size();
+			for (int i = 0; i < cntCommands; i++) {
+				Command command = commands.get(i);
+				command.run();
+			}
+		}
+	}
 
-  static class ClearCommand implements Command {
+	static class ClearCommand implements Command {
 
-    @Override
-    public void run() {
-      for (int i = 0; i < 10000; i++) {
-        System.out.println();
-      }
-    }
-  }
+		@Override
+		public void run() {
+			for (int i = 0; i < 10000; i++) {
+				System.out.println();
+			}
+		}
+	}
 
-  static class PrintCommand implements Command {
+	static class PrintCommand implements Command {
 
-    private String content;
+		private String content;
 
-    public PrintCommand(String content) {
-      this.content = content;
-    }
+		public PrintCommand(String content) {
+			this.content = content;
+		}
 
-    @Override
-    public void run() {
-      System.out.println("content = " + content);
-    }
-  }
+		@Override
+		public void run() {
+			System.out.println("content = " + content);
+		}
+	}
 
-  static class MoveCommand implements Command {
+	static class MoveCommand implements Command {
 
-    private int x;
-    private int y;
+		private int x;
+		private int y;
 
-    public MoveCommand(int x, int y) {
-      this.x = x;
-      this.y = y;
-    }
+		public MoveCommand(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
 
-    @Override
-    public void run() {
-      System.out.println(String.format("%c[%d;%df", 0x1B, y, x));
-    }
-  }
+		@Override
+		public void run() {
+			System.out.println(String.format("%c[%d;%df", 0x1B, y, x));
+		}
+	}
 
-  static class ColorCommand implements Command {
+	static class ColorCommand implements Command {
 
-    public enum Color {
-      BLACK("\u001B[30m"), RED("\u001B[31m"),
-      GREEN("\u001B[32m"), YELLOW("\u001B[33m"),
-      BLUE("\u001B[34m"), PURPLE("\u001B[35m"),
-      CYAN("\u001B[36m"), WHITE("\u001B[37m");
+		private Color color;
 
-      private final String color;
+		public ColorCommand(Color color) {
+			this.color = color;
+		}
 
-      Color(String color) { this.color = color; }
-      public String getColor() { return color; }
-    }
+		@Override
+		public void run() {
+			System.out.println(color.getColor());
+		}
 
-    private Color color;
-    public ColorCommand(Color color) {
-      this.color = color;
-    }
+		public enum Color {
+			BLACK("\u001B[30m"), RED("\u001B[31m"),
+			GREEN("\u001B[32m"), YELLOW("\u001B[33m"),
+			BLUE("\u001B[34m"), PURPLE("\u001B[35m"),
+			CYAN("\u001B[36m"), WHITE("\u001B[37m");
 
-    @Override
-    public void run() {
-      System.out.println(color.getColor());
-    }
-  }
+			private final String color;
+
+			Color(String color) {
+				this.color = color;
+			}
+
+			public String getColor() {
+				return color;
+			}
+		}
+	}
 }

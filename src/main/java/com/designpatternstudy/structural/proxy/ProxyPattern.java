@@ -18,60 +18,60 @@ import java.util.List;
  */
 public class ProxyPattern {
 
-  public static void main(String[] args) {
-    Display display = new BufferDisplay(5);
-    display.print("string print - 1");
-    display.print("string print - 2");
-    display.print("string print - 3");
-    display.print("string print - 4");
-    display.print("string print - 5");
-  }
+	public static void main(String[] args) {
+		Display display = new BufferDisplay(5);
+		display.print("string print - 1");
+		display.print("string print - 2");
+		display.print("string print - 3");
+		display.print("string print - 4");
+		display.print("string print - 5");
+	}
 
-  interface Display {
-    void print(String content);
-  }
+	interface Display {
+		void print(String content);
+	}
 
-  // Proxy
-  // 실제 ScreenDisplay 를 호출해서 print 하기전,
-  // buffer에 데이터를 모으는 전처리를 하는 클래스.
-  static class BufferDisplay implements Display {
+	// Proxy
+	// 실제 ScreenDisplay 를 호출해서 print 하기전,
+	// buffer에 데이터를 모으는 전처리를 하는 클래스.
+	static class BufferDisplay implements Display {
 
-    private final List<String> buffer = new ArrayList<>();
-    private ScreenDisplay screen; // Real Subject
-    int maxBufferSize;
+		private final List<String> buffer = new ArrayList<>();
+		int maxBufferSize;
+		private ScreenDisplay screen; // Real Subject
 
-    public BufferDisplay(int maxBufferSize) {
-      this.maxBufferSize = maxBufferSize;
-    }
+		public BufferDisplay(int maxBufferSize) {
+			this.maxBufferSize = maxBufferSize;
+		}
 
-    @Override
-    public void print(String content) {
-      buffer.add(content);
-      if(buffer.size() == maxBufferSize){
-       flush();
-      }
-    }
+		@Override
+		public void print(String content) {
+			buffer.add(content);
+			if (buffer.size() == maxBufferSize) {
+				flush();
+			}
+		}
 
-    private void flush() {
-      if(screen == null){
-        screen = new ScreenDisplay();
-      }
-      String lines = String.join("\n", buffer);
-      screen.print(lines);
-      buffer.clear();
-    }
-  }
+		private void flush() {
+			if (screen == null) {
+				screen = new ScreenDisplay();
+			}
+			String lines = String.join("\n", buffer);
+			screen.print(lines);
+			buffer.clear();
+		}
+	}
 
-  static class ScreenDisplay implements Display {
-    @Override
-    public void print(String content) {
-      // content를 화면에 출력하는것은 resource를 많이 사용하는 무거운 작업이라 가정
-      try {
-        Thread.sleep(1000);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-      System.out.println("content = " + content);
-    }
-  }
+	static class ScreenDisplay implements Display {
+		@Override
+		public void print(String content) {
+			// content를 화면에 출력하는것은 resource를 많이 사용하는 무거운 작업이라 가정
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			System.out.println("content = " + content);
+		}
+	}
 }

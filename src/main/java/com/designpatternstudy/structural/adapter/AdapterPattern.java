@@ -15,86 +15,85 @@ import java.util.List;
  */
 public class AdapterPattern {
 
-  public static void main(String[] args) {
-    List<Animal> animals = new ArrayList<>();
-    animals.add(new Dog("댕이"));
-    animals.add(new Cat("솜털이"));
-    animals.add(new Cat("휴휴"));
-//    animals.add(new Tiger("휴휴"));
-    animals.add(new TigerAdapter("타이온"));
+	public static void main(String[] args) {
+		List<Animal> animals = new ArrayList<>();
+		animals.add(new Dog("댕이"));
+		animals.add(new Cat("솜털이"));
+		animals.add(new Cat("휴휴"));
+		//    animals.add(new Tiger("휴휴"));
+		animals.add(new TigerAdapter("타이온"));
 
-    for (Animal animal : animals) {
-      animal.sound();
-    }
-  }
+		for (Animal animal : animals) {
+			animal.sound();
+		}
+	}
 
-  static abstract class Animal {
+	static abstract class Animal {
 
-    protected String name;
+		protected String name;
 
-    public Animal(String name) {
-      this.name = name;
-    }
+		public Animal(String name) {
+			this.name = name;
+		}
 
-    public abstract void sound();
-  }
+		public abstract void sound();
+	}
 
-  static class Dog extends Animal {
+	static class Dog extends Animal {
 
-    public Dog(String name) {
-      super(name);
-    }
+		public Dog(String name) {
+			super(name);
+		}
 
-    @Override
-    public void sound() {
-      System.out.println(name + " barking");
-    }
-  }
+		@Override
+		public void sound() {
+			System.out.println(name + " barking");
+		}
+	}
 
-  static class Cat extends Animal {
+	static class Cat extends Animal {
 
-    public Cat(String name) {
-      super(name);
-    }
+		public Cat(String name) {
+			super(name);
+		}
 
-    @Override
-    public void sound() {
-      System.out.println(name + " meeow");
-    }
-  }
+		@Override
+		public void sound() {
+			System.out.println(name + " meeow");
+		}
+	}
 
-  static class TigerAdapter extends Animal{
-    private Tiger tiger;
+	static class TigerAdapter extends Animal {
+		private Tiger tiger;
 
-    public TigerAdapter(String name) {
-      super(name);
-      tiger = new Tiger();
-      tiger.setName(name);
-    }
+		public TigerAdapter(String name) {
+			super(name);
+			tiger = new Tiger();
+			tiger.setName(name);
+		}
 
-    @Override
-    public void sound() {
-      System.out.print(tiger.getName() + " ");
-      tiger.roar();
-    }
-  }
+		@Override
+		public void sound() {
+			System.out.print(tiger.getName() + " ");
+			tiger.roar();
+		}
+	}
 
+	static class Tiger {
 
-  static class Tiger {
+		private String name;
 
-    private String name;
+		public String getName() {
+			return name;
+		}
 
-    public String getName() {
-      return name;
-    }
+		public void setName(String name) {
+			this.name = name;
+		}
 
-    public void setName(String name) {
-      this.name = name;
-    }
-
-    void roar() {
-      System.out.println("growl");
-    }
-  }
+		void roar() {
+			System.out.println("growl");
+		}
+	}
 
 }

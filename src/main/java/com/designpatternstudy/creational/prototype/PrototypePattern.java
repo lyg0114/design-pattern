@@ -17,210 +17,208 @@ import java.util.List;
  */
 public class PrototypePattern {
 
-  public static void main(String[] args) {
-    Point pt1 = new Point();
-    pt1.setX(0).setY(0);
-    System.out.println("pt1.draw() = " + pt1.draw());
+	public static void main(String[] args) {
+		Point pt1 = new Point();
+		pt1.setX(0).setY(0);
+		System.out.println("pt1.draw() = " + pt1.draw());
 
-    Point pt2 = new Point();
-    pt2.setX(100).setY(0);
-    System.out.println("pt2.draw() = " + pt2.draw());
+		Point pt2 = new Point();
+		pt2.setX(100).setY(0);
+		System.out.println("pt2.draw() = " + pt2.draw());
 
-    Line line1 = new Line();
-    line1.setStartPt(pt1).setEndPt(pt2);
-    System.out.println("line1.draw() = " + line1.draw());
+		Line line1 = new Line();
+		line1.setStartPt(pt1).setEndPt(pt2);
+		System.out.println("line1.draw() = " + line1.draw());
 
-    Line lineCopy = (Line) line1.copy();
+		Line lineCopy = (Line)line1.copy();
 
-    Point pt3 = new Point();
-    pt3.setX(100).setY(100);
-    System.out.println("pt3.draw() = " + pt3.draw());
+		Point pt3 = new Point();
+		pt3.setX(100).setY(100);
+		System.out.println("pt3.draw() = " + pt3.draw());
 
-    Point pt4 = new Point();
-    pt4.setX(0).setY(100);
-    System.out.println("pt4.draw() = " + pt4.draw());
+		Point pt4 = new Point();
+		pt4.setX(0).setY(100);
+		System.out.println("pt4.draw() = " + pt4.draw());
 
-    Line line2 = new Line();
-    line2.setStartPt(pt2).setEndPt(pt3);
+		Line line2 = new Line();
+		line2.setStartPt(pt2).setEndPt(pt3);
 
-    Line line3 = new Line();
-    line3.setStartPt(pt3).setEndPt(pt4);
+		Line line3 = new Line();
+		line3.setStartPt(pt3).setEndPt(pt4);
 
-    Line line4 = new Line();
-    line4.setStartPt(pt4).setEndPt(pt1);
+		Line line4 = new Line();
+		line4.setStartPt(pt4).setEndPt(pt1);
 
     /*
      - 사각형 클래스를 따로 선언하지 않고 Group 클래스를 사용
      - 기존 클래스들을 논리적으로 조합하여 사각형 개념을 만들어냄
      - 새로운 클래스를 추가하지 않고, 새로운 개념의 객체를 생성
      */
-    Group rect = new Group("RECT");
-    rect.addShape(line1)
-        .addShape(line2)
-        .addShape(line3)
-        .addShape(line4)
-    ;
-    System.out.println("rect.draw() = " + rect.draw());
+		Group rect = new Group("RECT");
+		rect.addShape(line1)
+			.addShape(line2)
+			.addShape(line3)
+			.addShape(line4)
+		;
+		System.out.println("rect.draw() = " + rect.draw());
 
-    Group cloneRect = (Group) rect.copy();
-    cloneRect.moveOffset(100, 100);
+		Group cloneRect = (Group)rect.copy();
+		cloneRect.moveOffset(100, 100);
 
-    System.out.println("cloneRect.draw() = " + cloneRect.draw());
-  }
+		System.out.println("cloneRect.draw() = " + cloneRect.draw());
+	}
 
-  static class Group implements Shape, Prototype {
+	interface Prototype {
 
-    private List<Shape> shapeList = new ArrayList<>();
-    private String name;
+		Object copy();
+	}
 
-    public Group(String name) {
-      this.name = name;
-    }
+	interface Shape {
 
-    public Group addShape(Shape shape) {
-      shapeList.add(shape);
-      return this;
-    }
+		String draw();
 
-    @Override
-    public Object copy() {
-      Group newGroup = new Group(name);
-      Iterator<Shape> itr = shapeList.iterator();
-      while (itr.hasNext()) {
-        Prototype shape = (Prototype) itr.next();
-        newGroup.shapeList.add((Shape) shape.copy());
-      }
-      return newGroup;
-    }
+		void moveOffset(int dx, int dy);
+	}
 
-    @Override
-    public String draw() {
-      StringBuffer buffer = new StringBuffer(name);
-      buffer.append("(");
-      Iterator<Shape> itr = shapeList.iterator();
-      while (itr.hasNext()) {
-        Shape shape = itr.next();
-        buffer.append(shape.draw());
-        if (itr.hasNext()) {
-          buffer.append(" ");
-        }
-      }
-      buffer.append(")");
-      return buffer.toString();
-    }
+	static class Group implements Shape, Prototype {
 
-    @Override
-    public void moveOffset(int dx, int dy) {
-      Iterator<Shape> itr = shapeList.iterator();
-      while (itr.hasNext()) {
-        Shape shape = itr.next();
-        shape.moveOffset(dx, dy);
-      }
-    }
-  }
+		private List<Shape> shapeList = new ArrayList<>();
+		private String name;
 
-  static class Line implements Shape, Prototype {
+		public Group(String name) {
+			this.name = name;
+		}
 
-    private Point startPt;
-    private Point endPt;
+		public Group addShape(Shape shape) {
+			shapeList.add(shape);
+			return this;
+		}
 
-    /*
-      - 복사본 객체와 원본 객체의 필드 값들이 서로다른 메로리 공간에 위치하도록 복사 된다.
-      - 복사본의 시작점과 끝점을 변경해도 원본의 시작점,끝점의 좌표가 변경되지 않는다. 반대도 동일
-     */
-    @Override
-    public Object copy() {
-      Line newLine = new Line();
-      newLine.startPt = (Point) startPt.copy();
-      newLine.endPt = (Point) endPt.copy();
-      return newLine;
-    }
+		@Override
+		public Object copy() {
+			Group newGroup = new Group(name);
+			Iterator<Shape> itr = shapeList.iterator();
+			while (itr.hasNext()) {
+				Prototype shape = (Prototype)itr.next();
+				newGroup.shapeList.add((Shape)shape.copy());
+			}
+			return newGroup;
+		}
 
-    @Override
-    public String draw() {
-      return "LINE(" + startPt.draw() + "," + endPt.draw() + ")";
-    }
+		@Override
+		public String draw() {
+			StringBuffer buffer = new StringBuffer(name);
+			buffer.append("(");
+			Iterator<Shape> itr = shapeList.iterator();
+			while (itr.hasNext()) {
+				Shape shape = itr.next();
+				buffer.append(shape.draw());
+				if (itr.hasNext()) {
+					buffer.append(" ");
+				}
+			}
+			buffer.append(")");
+			return buffer.toString();
+		}
 
-    @Override
-    public void moveOffset(int dx, int dy) {
-      startPt.moveOffset(dx, dy);
-      endPt.moveOffset(dx, dy);
-    }
+		@Override
+		public void moveOffset(int dx, int dy) {
+			Iterator<Shape> itr = shapeList.iterator();
+			while (itr.hasNext()) {
+				Shape shape = itr.next();
+				shape.moveOffset(dx, dy);
+			}
+		}
+	}
 
-    public Point getStartPt() {
-      return startPt;
-    }
+	static class Line implements Shape, Prototype {
 
-    public Line setStartPt(Point startPt) {
-      this.startPt = startPt;
-      return this;
-    }
+		private Point startPt;
+		private Point endPt;
 
-    public Point getEndPt() {
-      return endPt;
-    }
+		/*
+		  - 복사본 객체와 원본 객체의 필드 값들이 서로다른 메로리 공간에 위치하도록 복사 된다.
+		  - 복사본의 시작점과 끝점을 변경해도 원본의 시작점,끝점의 좌표가 변경되지 않는다. 반대도 동일
+		 */
+		@Override
+		public Object copy() {
+			Line newLine = new Line();
+			newLine.startPt = (Point)startPt.copy();
+			newLine.endPt = (Point)endPt.copy();
+			return newLine;
+		}
 
-    public Line setEndPt(Point endPt) {
-      this.endPt = endPt;
-      return this;
-    }
-  }
+		@Override
+		public String draw() {
+			return "LINE(" + startPt.draw() + "," + endPt.draw() + ")";
+		}
 
+		@Override
+		public void moveOffset(int dx, int dy) {
+			startPt.moveOffset(dx, dy);
+			endPt.moveOffset(dx, dy);
+		}
 
-  static class Point implements Shape, Prototype {
+		public Point getStartPt() {
+			return startPt;
+		}
 
-    int x;
-    int y;
+		public Line setStartPt(Point startPt) {
+			this.startPt = startPt;
+			return this;
+		}
 
-    @Override
-    public Object copy() {
-      Point newPoint = new Point();
-      newPoint.x = this.x;
-      newPoint.y = this.y;
-      return newPoint;
-    }
+		public Point getEndPt() {
+			return endPt;
+		}
 
-    @Override
-    public String draw() {
-      return "(" + x + " " + y + ")";
-    }
+		public Line setEndPt(Point endPt) {
+			this.endPt = endPt;
+			return this;
+		}
+	}
 
-    @Override
-    public void moveOffset(int dx, int dy) {
-      this.x += dx;
-      this.y += dy;
-    }
+	static class Point implements Shape, Prototype {
 
-    public Point setX(int x) {
-      this.x = x;
-      return this;
-    }
+		int x;
+		int y;
 
-    public Point setY(int y) {
-      this.y = y;
-      return this;
-    }
+		@Override
+		public Object copy() {
+			Point newPoint = new Point();
+			newPoint.x = this.x;
+			newPoint.y = this.y;
+			return newPoint;
+		}
 
-    public int getX() {
-      return x;
-    }
+		@Override
+		public String draw() {
+			return "(" + x + " " + y + ")";
+		}
 
-    public int getY() {
-      return y;
-    }
-  }
+		@Override
+		public void moveOffset(int dx, int dy) {
+			this.x += dx;
+			this.y += dy;
+		}
 
-  interface Prototype {
+		public int getX() {
+			return x;
+		}
 
-    Object copy();
-  }
+		public Point setX(int x) {
+			this.x = x;
+			return this;
+		}
 
-  interface Shape {
+		public int getY() {
+			return y;
+		}
 
-    String draw();
-
-    void moveOffset(int dx, int dy);
-  }
-
+		public Point setY(int y) {
+			this.y = y;
+			return this;
+		}
+	}
 
 }

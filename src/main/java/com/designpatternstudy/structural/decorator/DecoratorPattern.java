@@ -17,186 +17,185 @@ import java.util.List;
  */
 public class DecoratorPattern {
 
-  public static void main(String[] args) {
-    Strings strings = new Strings();
-    strings.add("Hell~");
-    strings.add("Hell~ Nice to meet you");
-    strings.add("Nice to meet you");
-    strings.add("killing voice");
+	public static void main(String[] args) {
+		Strings strings = new Strings();
+		strings.add("Hell~");
+		strings.add("Hell~ Nice to meet you");
+		strings.add("Nice to meet you");
+		strings.add("killing voice");
 
-    SideDecorator sideDecorator = new SideDecorator(strings, '#');
-    LineNumberDecorator lineNumberDecorator = new LineNumberDecorator(sideDecorator);
-    BoxDecorator boxDecorator = new BoxDecorator(lineNumberDecorator);
-    boxDecorator.print();
-  }
+		SideDecorator sideDecorator = new SideDecorator(strings, '#');
+		LineNumberDecorator lineNumberDecorator = new LineNumberDecorator(sideDecorator);
+		BoxDecorator boxDecorator = new BoxDecorator(lineNumberDecorator);
+		boxDecorator.print();
+	}
 
-  static abstract class Item {
+	static abstract class Item {
 
-    public abstract int getLinesCount();
+		public abstract int getLinesCount();
 
-    public abstract int getMaxLength();
+		public abstract int getMaxLength();
 
-    public abstract int getLength(int index);
+		public abstract int getLength(int index);
 
-    public abstract String getString(int index);
+		public abstract String getString(int index);
 
-    public void print() {
-      int cntLines = getLinesCount();
-      for (int i = 0; i < cntLines; i++) {
-        String strings = getString(i);
-        System.out.println("strings = " + strings);
-      }
-    }
-  }
+		public void print() {
+			int cntLines = getLinesCount();
+			for (int i = 0; i < cntLines; i++) {
+				String strings = getString(i);
+				System.out.println("strings = " + strings);
+			}
+		}
+	}
 
-  static class Strings extends Item {
+	static class Strings extends Item {
 
-    private List<String> strings = new ArrayList<>();
+		private List<String> strings = new ArrayList<>();
 
-    public void add(String item) {
-      strings.add(item);
-    }
+		public void add(String item) {
+			strings.add(item);
+		}
 
-    @Override
-    public int getLinesCount() {
-      return strings.size();
-    }
+		@Override
+		public int getLinesCount() {
+			return strings.size();
+		}
 
-    @Override
-    public int getMaxLength() {
-      return strings.stream()
-          .mapToInt(String::length)
-          .max()
-          .orElse(0);
-    }
+		@Override
+		public int getMaxLength() {
+			return strings.stream()
+				.mapToInt(String::length)
+				.max()
+				.orElse(0);
+		}
 
-    @Override
-    public int getLength(int index) {
-      return strings.get(index).length();
-    }
+		@Override
+		public int getLength(int index) {
+			return strings.get(index).length();
+		}
 
-    @Override
-    public String getString(int index) {
-      return strings.get(index);
-    }
-  }
+		@Override
+		public String getString(int index) {
+			return strings.get(index);
+		}
+	}
 
-  static abstract class Decorator extends Item {
+	static abstract class Decorator extends Item {
 
-    protected Item item;
+		protected Item item;
 
-    public Decorator(Item item) {
-      this.item = item;
-    }
-  }
+		public Decorator(Item item) {
+			this.item = item;
+		}
+	}
 
-  static class SideDecorator extends Decorator {
+	static class SideDecorator extends Decorator {
 
-    private Character ch;
+		private Character ch;
 
-    public SideDecorator(Item item, Character ch) {
-      super(item);
-      this.ch = ch;
-    }
+		public SideDecorator(Item item, Character ch) {
+			super(item);
+			this.ch = ch;
+		}
 
-    @Override
-    public int getLinesCount() {
-      return item.getLinesCount();
-    }
+		@Override
+		public int getLinesCount() {
+			return item.getLinesCount();
+		}
 
-    @Override
-    public int getMaxLength() {
-      return item.getMaxLength() + 2;
-    }
+		@Override
+		public int getMaxLength() {
+			return item.getMaxLength() + 2;
+		}
 
-    @Override
-    public int getLength(int index) {
-      return item.getLength(index) + 2;
-    }
+		@Override
+		public int getLength(int index) {
+			return item.getLength(index) + 2;
+		}
 
-    @Override
-    public String getString(int index) {
-      return ch + " " + item.getString(index) + " " + ch;
-    }
-  }
+		@Override
+		public String getString(int index) {
+			return ch + " " + item.getString(index) + " " + ch;
+		}
+	}
 
-  static class BoxDecorator extends Decorator {
+	static class BoxDecorator extends Decorator {
 
-    public BoxDecorator(Item item) {
-      super(item);
-    }
+		public BoxDecorator(Item item) {
+			super(item);
+		}
 
-    @Override
-    public int getLinesCount() {
-      return item.getLinesCount() + 2;
-    }
+		@Override
+		public int getLinesCount() {
+			return item.getLinesCount() + 2;
+		}
 
-    @Override
-    public int getMaxLength() {
-      return item.getMaxLength() + 2;
-    }
+		@Override
+		public int getMaxLength() {
+			return item.getMaxLength() + 2;
+		}
 
-    @Override
-    public int getLength(int index) {
-      return item.getLength(index) + 2;
-    }
+		@Override
+		public int getLength(int index) {
+			return item.getLength(index) + 2;
+		}
 
-    @Override
-    public String getString(int index) {
-      int maxWidth = getMaxLength();
-      if (index == 0 || index == (getLinesCount() - 1)) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("+");
-        for (int i = 0; i < maxWidth - 2; i++) {
-          sb.append("-");
-        }
-        sb.append("+");
-        return sb.toString();
-      } else {
+		@Override
+		public String getString(int index) {
+			int maxWidth = getMaxLength();
+			if (index == 0 || index == (getLinesCount() - 1)) {
+				StringBuilder sb = new StringBuilder();
+				sb.append("+");
+				for (int i = 0; i < maxWidth - 2; i++) {
+					sb.append("-");
+				}
+				sb.append("+");
+				return sb.toString();
+			} else {
 
-        return '|' + item.getString(index - 1) +
-            makeTailString(maxWidth - getLength(index - 1));
+				return '|' + item.getString(index - 1) +
+					makeTailString(maxWidth - getLength(index - 1));
 
-      }
-    }
+			}
+		}
 
-    private String makeTailString(int count) {
-      StringBuilder sb = new StringBuilder();
-      for (int i = 0; i < count; i++) {
-        sb.append(' ');
-      }
-      sb.append('|');
+		private String makeTailString(int count) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < count; i++) {
+				sb.append(' ');
+			}
+			sb.append('|');
 
-      return sb.toString();
-    }
-  }
+			return sb.toString();
+		}
+	}
 
-  static class LineNumberDecorator extends Decorator {
+	static class LineNumberDecorator extends Decorator {
 
-    public LineNumberDecorator(Item item) {
-      super(item);
-    }
+		public LineNumberDecorator(Item item) {
+			super(item);
+		}
 
-    @Override
-    public int getLinesCount() {
-      return item.getLinesCount();
-    }
+		@Override
+		public int getLinesCount() {
+			return item.getLinesCount();
+		}
 
-    @Override
-    public int getMaxLength() {
-      return item.getMaxLength() + 4;
-    }
+		@Override
+		public int getMaxLength() {
+			return item.getMaxLength() + 4;
+		}
 
-    @Override
-    public int getLength(int index) {
-      return item.getLength(index) + 4;
-    }
+		@Override
+		public int getLength(int index) {
+			return item.getLength(index) + 4;
+		}
 
-    @Override
-    public String getString(int index) {
-      return String.format("%02d", index) + ": " + item.getString(index);
-    }
-  }
-
+		@Override
+		public String getString(int index) {
+			return String.format("%02d", index) + ": " + item.getString(index);
+		}
+	}
 
 }

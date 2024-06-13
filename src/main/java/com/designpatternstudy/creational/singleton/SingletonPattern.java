@@ -12,30 +12,30 @@ package com.designpatternstudy.creational.singleton;
  */
 public class SingletonPattern {
 
-  public static void main(String[] args) {
-    King king1 = King.getInstance();
-    King king2 = King.getInstance();
-    System.out.println("king1.getClass() = " + king1.getClass());
-    System.out.println("king2.getClass() = " + king2.getClass());
-    System.out.println("king1 == king2 = " + (king1 == king2));
-  }
+	public static void main(String[] args) {
+		King king1 = King.getInstance();
+		King king2 = King.getInstance();
+		System.out.println("king1.getClass() = " + king1.getClass());
+		System.out.println("king2.getClass() = " + king2.getClass());
+		System.out.println("king1 == king2 = " + (king1 == king2));
+	}
 
-  static class King {
+	static class King {
 
-    private static King self = null;
+		private static King self = null;
 
-    private King() {
-    }
+		private King() {
+		}
 
-    public synchronized static King getInstance() {
-      if (self == null) {
-        self = new King();
-      }
-      return self;
-    }
+		public synchronized static King getInstance() {
+			if (self == null) {
+				self = new King();
+			}
+			return self;
+		}
 
-    public void say() {
-      System.out.println("I am only one");
-    }
-  }
+		public void say() {
+			System.out.println("I am only one");
+		}
+	}
 }

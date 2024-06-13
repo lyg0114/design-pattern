@@ -17,136 +17,135 @@ import java.util.Random;
  */
 public class ObserverPattern {
 
-  private static DiceGame getDiceGame(int bound) {
-    return new UnFairDiceGame(bound);
-  }
+	private static DiceGame getDiceGame(int bound) {
+		return new UnFairDiceGame(bound);
+	}
 
-  public static void main(String[] args) {
-    int magicNumber = 4;
+	public static void main(String[] args) {
+		int magicNumber = 4;
 
-    DiceGame diceGame = getDiceGame(magicNumber);
-    diceGame.addPlayer(new EvenBettingPlayer("짝궁댕이"));
-    diceGame.addPlayer(new OddBettingPlayer("홀아비"));
-    diceGame.addPlayer(new OddBettingPlayer("홀쭉이"));
-    diceGame.addPlayer(new PickBettingPlayer("타짜", magicNumber));
+		DiceGame diceGame = getDiceGame(magicNumber);
+		diceGame.addPlayer(new EvenBettingPlayer("짝궁댕이"));
+		diceGame.addPlayer(new OddBettingPlayer("홀아비"));
+		diceGame.addPlayer(new OddBettingPlayer("홀쭉이"));
+		diceGame.addPlayer(new PickBettingPlayer("타짜", magicNumber));
 
-    System.out.println("############");
-    System.out.println("게임 시작");
-    System.out.println("############");
-    for (int i = 0; i < 5; i++) {
-      diceGame.play();
-    }
-  }
+		System.out.println("############");
+		System.out.println("게임 시작");
+		System.out.println("############");
+		for (int i = 0; i < 5; i++) {
+			diceGame.play();
+		}
+	}
 
-  static abstract class Player {
-    private final String name;
+	static abstract class Player {
+		private final String name;
 
-    public Player(String name) {
-      this.name = name;
-    }
+		public Player(String name) {
+			this.name = name;
+		}
 
-    public String getName() {
-      return name;
-    }
+		public String getName() {
+			return name;
+		}
 
-    public abstract void update(int diceNumber);
-  }
+		public abstract void update(int diceNumber);
+	}
 
-  static class OddBettingPlayer extends Player {
-    public OddBettingPlayer(String name) {
-      super(name);
-    }
+	static class OddBettingPlayer extends Player {
+		public OddBettingPlayer(String name) {
+			super(name);
+		}
 
-    @Override
-    public void update(int diceNumber) {
-      if (diceNumber % 2 == 1) {
-        System.out.println(getName() + " win!");
-      }
-    }
-  }
+		@Override
+		public void update(int diceNumber) {
+			if (diceNumber % 2 == 1) {
+				System.out.println(getName() + " win!");
+			}
+		}
+	}
 
-  static class EvenBettingPlayer extends Player {
-    public EvenBettingPlayer(String name) {
-      super(name);
-    }
+	static class EvenBettingPlayer extends Player {
+		public EvenBettingPlayer(String name) {
+			super(name);
+		}
 
-    @Override
-    public void update(int diceNumber) {
-      if (diceNumber % 2 == 0) {
-        System.out.println(getName() + " win!");
-      }
-    }
-  }
+		@Override
+		public void update(int diceNumber) {
+			if (diceNumber % 2 == 0) {
+				System.out.println(getName() + " win!");
+			}
+		}
+	}
 
-  static class PickBettingPlayer extends Player {
-    private int picNum;
+	static class PickBettingPlayer extends Player {
+		private int picNum;
 
-    public PickBettingPlayer(String name, int picNum) {
-      super(name);
-      this.picNum = picNum;
-    }
+		public PickBettingPlayer(String name, int picNum) {
+			super(name);
+			this.picNum = picNum;
+		}
 
-    @Override
-    public void update(int diceNumber) {
-      if (diceNumber == picNum) {
-        System.out.println(getName() + " win!");
-      }
-    }
-  }
-
-
-  /* ============================================================ */
+		@Override
+		public void update(int diceNumber) {
+			if (diceNumber == picNum) {
+				System.out.println(getName() + " win!");
+			}
+		}
+	}
 
 
-  static abstract class DiceGame {
-    protected List<Player> players = new LinkedList<>();
+	/* ============================================================ */
 
-    public void addPlayer(Player player) {
-      players.add(player);
-    }
+	static abstract class DiceGame {
+		protected List<Player> players = new LinkedList<>();
 
-    public abstract void play();
-  }
+		public void addPlayer(Player player) {
+			players.add(player);
+		}
 
-  /*
-    - 공정한 게임
-   */
-  static class FairDiceGame extends DiceGame {
-    private final Random random = new Random();
+		public abstract void play();
+	}
 
-    // 게임 결과를 모든 Player에게 전파
-    @Override
-    public void play() {
-      int diceNumber = getDiceNumber();
-      System.out.println("주사위 던졌다. = " + diceNumber);
-      for (Player player : players) {
-        player.update(diceNumber);
-      }
-    }
+	/*
+	  - 공정한 게임
+	 */
+	static class FairDiceGame extends DiceGame {
+		private final Random random = new Random();
 
-    // 공정한 주사위 번호 생성
-    private int getDiceNumber() {
-      return random.nextInt(6) + 1;
-    }
-  }
+		// 게임 결과를 모든 Player에게 전파
+		@Override
+		public void play() {
+			int diceNumber = getDiceNumber();
+			System.out.println("주사위 던졌다. = " + diceNumber);
+			for (Player player : players) {
+				player.update(diceNumber);
+			}
+		}
 
-  /*
-    - 불공정한 게임
-   */
-  static class UnFairDiceGame extends DiceGame {
+		// 공정한 주사위 번호 생성
+		private int getDiceNumber() {
+			return random.nextInt(6) + 1;
+		}
+	}
 
-    private final int NUMBER;
+	/*
+	  - 불공정한 게임
+	 */
+	static class UnFairDiceGame extends DiceGame {
 
-    public UnFairDiceGame(int number) {
-      this.NUMBER = number;
-    }
+		private final int NUMBER;
 
-    // 게임 결과를 모든 Player에게 전파
-    @Override
-    public void play() {
-      System.out.println("주사위 던졌다. = " + NUMBER);
-      players.forEach(player -> player.update(NUMBER));
-    }
-  }
-  /* ============================================================ */
+		public UnFairDiceGame(int number) {
+			this.NUMBER = number;
+		}
+
+		// 게임 결과를 모든 Player에게 전파
+		@Override
+		public void play() {
+			System.out.println("주사위 던졌다. = " + NUMBER);
+			players.forEach(player -> player.update(NUMBER));
+		}
+	}
+	/* ============================================================ */
 }

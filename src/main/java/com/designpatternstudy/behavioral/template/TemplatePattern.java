@@ -16,124 +16,126 @@ import java.util.List;
  */
 public class TemplatePattern {
 
-  public static void main(String[] args) {
-    String title = "디자인 패턴";
-    List<String> content = List.of(
-        "컨텐츠 내용 1",
-        "컨텐츠 내용 2",
-        "컨텐츠 내용 3",
-        "컨텐츠 내용 4",
-        "컨텐츠 내용 4"
-    );
-    String footer = "디자인 패턴 footer";
+	public static void main(String[] args) {
+		String title = "디자인 패턴";
+		List<String> content = List.of(
+			"컨텐츠 내용 1",
+			"컨텐츠 내용 2",
+			"컨텐츠 내용 3",
+			"컨텐츠 내용 4",
+			"컨텐츠 내용 4"
+		);
+		String footer = "디자인 패턴 footer";
 
-    Article article = new Article(title, content, footer);
-    DisplayArticleTemplate simpleTemplate = new SimpleDisplayArticle(article);
-    System.out.println("[CASE-1]");
-    simpleTemplate.display();
+		Article article = new Article(title, content, footer);
+		DisplayArticleTemplate simpleTemplate = new SimpleDisplayArticle(article);
+		System.out.println("[CASE-1]");
+		simpleTemplate.display();
 
-    System.out.println();
+		System.out.println();
 
-    DisplayArticleTemplate captionTemplate = new CaptionDisplayArticle(article);
-    System.out.println("[CASE-2]");
-    captionTemplate.display();
-  }
+		DisplayArticleTemplate captionTemplate = new CaptionDisplayArticle(article);
+		System.out.println("[CASE-2]");
+		captionTemplate.display();
+	}
 
-  static class Article {
-    private String title;
-    private List<String> content;
-    private String footer;
+	static class Article {
+		private String title;
+		private List<String> content;
+		private String footer;
 
-    public Article(String title, List<String> content, String footer) {
-      this.title = title;
-      this.content = content;
-      this.footer = footer;
-    }
+		public Article(String title, List<String> content, String footer) {
+			this.title = title;
+			this.content = content;
+			this.footer = footer;
+		}
 
-    public String getTitle() {
-      return title;
-    }
+		public String getTitle() {
+			return title;
+		}
 
-    public List<String> getContent() {
-      return content;
-    }
+		public List<String> getContent() {
+			return content;
+		}
 
-    public String getFooter() {
-      return footer;
-    }
-  }
+		public String getFooter() {
+			return footer;
+		}
+	}
 
-  static abstract class DisplayArticleTemplate {
-    protected Article article;
+	static abstract class DisplayArticleTemplate {
+		protected Article article;
 
-    public DisplayArticleTemplate(Article article) {
-      this.article = article;
-    }
+		public DisplayArticleTemplate(Article article) {
+			this.article = article;
+		}
 
-    // 템플릿으로 처리할 부분
-    public final void display() {
-      System.out.println("##############");   // 공통적으로 사용되는 코드
-      title();                                // 하위 클래스에서 구체적인 구현 처리
-      content();                              // 하위 클래스에서 구체적인 구현 처리
-      footer();                               // 하위 클래스에서 구체적인 구현 처리
-      System.out.println("##############");   // 공통적으로 사용되는 코드
-    }
+		// 템플릿으로 처리할 부분
+		public final void display() {
+			System.out.println("##############");   // 공통적으로 사용되는 코드
+			title();                                // 하위 클래스에서 구체적인 구현 처리
+			content();                              // 하위 클래스에서 구체적인 구현 처리
+			footer();                               // 하위 클래스에서 구체적인 구현 처리
+			System.out.println("##############");   // 공통적으로 사용되는 코드
+		}
 
-    protected abstract void title();
-    protected abstract void content();
-    protected abstract void footer();
-  }
+		protected abstract void title();
 
-  static class SimpleDisplayArticle extends DisplayArticleTemplate {
+		protected abstract void content();
 
-    public SimpleDisplayArticle(Article article) {
-      super(article);
-    }
+		protected abstract void footer();
+	}
 
-    @Override
-    protected void title() {
-      System.out.println("article.getTitle() = " + article.getTitle());
-    }
+	static class SimpleDisplayArticle extends DisplayArticleTemplate {
 
-    @Override
-    protected void content() {
-      List<String> content = article.getContent();
-      for (String s : content) {
-        System.out.println("s = " + s);
-      }
-    }
+		public SimpleDisplayArticle(Article article) {
+			super(article);
+		}
 
-    @Override
-    protected void footer() {
-      System.out.println("article.getFooter() = " + article.getFooter());
-    }
-  }
+		@Override
+		protected void title() {
+			System.out.println("article.getTitle() = " + article.getTitle());
+		}
 
-  static class CaptionDisplayArticle extends DisplayArticleTemplate {
+		@Override
+		protected void content() {
+			List<String> content = article.getContent();
+			for (String s : content) {
+				System.out.println("s = " + s);
+			}
+		}
 
-    public CaptionDisplayArticle(Article article) {
-      super(article);
-    }
+		@Override
+		protected void footer() {
+			System.out.println("article.getFooter() = " + article.getFooter());
+		}
+	}
 
-    @Override
-    protected void title() {
-      System.out.println("TITLE");
-      System.out.println("article.getTitle() = " + article.getTitle());
-    }
+	static class CaptionDisplayArticle extends DisplayArticleTemplate {
 
-    @Override
-    protected void content() {
-      System.out.println("CONTENT");
-      List<String> content = article.getContent();
-      for (String s : content) {
-        System.out.println("s = " + s);
-      }
-    }
+		public CaptionDisplayArticle(Article article) {
+			super(article);
+		}
 
-    @Override
-    protected void footer() {
-      System.out.println("FOOTER");
-      System.out.println("article.getFooter() = " + article.getFooter());
-    }
-  }
+		@Override
+		protected void title() {
+			System.out.println("TITLE");
+			System.out.println("article.getTitle() = " + article.getTitle());
+		}
+
+		@Override
+		protected void content() {
+			System.out.println("CONTENT");
+			List<String> content = article.getContent();
+			for (String s : content) {
+				System.out.println("s = " + s);
+			}
+		}
+
+		@Override
+		protected void footer() {
+			System.out.println("FOOTER");
+			System.out.println("article.getFooter() = " + article.getFooter());
+		}
+	}
 }

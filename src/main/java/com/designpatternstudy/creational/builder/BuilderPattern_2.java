@@ -14,154 +14,155 @@ package com.designpatternstudy.creational.builder;
  */
 public class BuilderPattern_2 {
 
-  public static void main(String[] args) {
-    Data data = new Data("Jane", 25);
-    Builder builder = getBuilder(data);
-    Director director = new Director(builder);
-    String result = director.build();
-    System.out.println("result = " + result);
-  }
+	public static void main(String[] args) {
+		Data data = new Data("Jane", 25);
+		Builder builder = getBuilder(data);
+		Director director = new Director(builder);
+		String result = director.build();
+		System.out.println("result = " + result);
+	}
 
-  private static Builder getBuilder(Data data) {
-//    return new PlainTextBuilder(data);
-//    return new JSONBuilder(data);
-    return new XMLBuilder(data);
-  }
+	private static Builder getBuilder(Data data) {
+		//    return new PlainTextBuilder(data);
+		//    return new JSONBuilder(data);
+		return new XMLBuilder(data);
+	}
 
-  static class Data {
+	static class Data {
 
-    private String name;
-    private int age;
+		private String name;
+		private int age;
 
-    public Data(String name, int age) {
-      this.name = name;
-      this.age = age;
-    }
+		public Data(String name, int age) {
+			this.name = name;
+			this.age = age;
+		}
 
-    public String getName() {
-      return name;
-    }
+		public String getName() {
+			return name;
+		}
 
-    public int getAge() {
-      return age;
-    }
-  }
+		public int getAge() {
+			return age;
+		}
+	}
 
-  static class Director {
-    private Builder builder;
+	static class Director {
+		private Builder builder;
 
-    public Director(Builder builder) {
-      this.builder = builder;
-    }
+		public Director(Builder builder) {
+			this.builder = builder;
+		}
 
-    public String build(){
-      StringBuilder sb = new StringBuilder();
-      sb.append(builder.head());
-      sb.append(builder.body());
-      sb.append(builder.foot());
-      return sb.toString();
-    }
-  }
+		public String build() {
+			StringBuilder sb = new StringBuilder();
+			sb.append(builder.head());
+			sb.append(builder.body());
+			sb.append(builder.foot());
+			return sb.toString();
+		}
+	}
 
-  static abstract class Builder {
+	static abstract class Builder {
 
-    protected Data data;
+		protected Data data;
 
-    public Builder(Data data) {
-      this.data = data;
-    }
+		public Builder(Data data) {
+			this.data = data;
+		}
 
-    public abstract String head();
-    public abstract String body();
-    public abstract String foot();
+		public abstract String head();
 
-  }
+		public abstract String body();
 
-  static class PlainTextBuilder extends Builder {
+		public abstract String foot();
 
-    public PlainTextBuilder(Data data) {
-      super(data);
-    }
+	}
 
-    @Override
-    public String head() {
-      return "";
-    }
+	static class PlainTextBuilder extends Builder {
 
-    @Override
-    public String body() {
-      StringBuilder sb = new StringBuilder();
-      sb.append("Name : ");
-      sb.append(data.getName());
-      sb.append(", Age: ");
-      sb.append(data.getAge());
-      return sb.toString();
-    }
+		public PlainTextBuilder(Data data) {
+			super(data);
+		}
 
-    @Override
-    public String foot() {
-      return "";
-    }
-  }
+		@Override
+		public String head() {
+			return "";
+		}
 
-  static class JSONBuilder extends Builder {
+		@Override
+		public String body() {
+			StringBuilder sb = new StringBuilder();
+			sb.append("Name : ");
+			sb.append(data.getName());
+			sb.append(", Age: ");
+			sb.append(data.getAge());
+			return sb.toString();
+		}
 
-    public JSONBuilder(Data data) {
-      super(data);
-    }
+		@Override
+		public String foot() {
+			return "";
+		}
+	}
 
-    @Override
-    public String head() {
-      return "{";
-    }
+	static class JSONBuilder extends Builder {
 
-    @Override
-    public String body() {
-      StringBuilder sb = new StringBuilder();
-      sb.append("\"Name\" : ");
-      sb.append("\"" + data.getName() + "\"" + ",");
-      sb.append("\"Age\" : ");
-      sb.append(data.getAge());
-      return sb.toString();
-    }
+		public JSONBuilder(Data data) {
+			super(data);
+		}
 
-    @Override
-    public String foot() {
-      return "}";
-    }
-  }
+		@Override
+		public String head() {
+			return "{";
+		}
 
+		@Override
+		public String body() {
+			StringBuilder sb = new StringBuilder();
+			sb.append("\"Name\" : ");
+			sb.append("\"" + data.getName() + "\"" + ",");
+			sb.append("\"Age\" : ");
+			sb.append(data.getAge());
+			return sb.toString();
+		}
 
-  static class XMLBuilder extends Builder {
+		@Override
+		public String foot() {
+			return "}";
+		}
+	}
 
-    public XMLBuilder(Data data) {
-      super(data);
-    }
+	static class XMLBuilder extends Builder {
 
-    @Override
-    public String head() {
-      StringBuilder sb = new StringBuilder();
+		public XMLBuilder(Data data) {
+			super(data);
+		}
 
-      sb.append("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
-      sb.append("<DATA>");
-      return sb.toString();
-    }
+		@Override
+		public String head() {
+			StringBuilder sb = new StringBuilder();
 
-    @Override
-    public String body() {
-      StringBuilder sb = new StringBuilder();
-      sb.append("<NAME>");
-      sb.append(data.getName());
-      sb.append("</NAME>");
-      sb.append("<AGE>");
-      sb.append(data.getAge());
-      sb.append("</AGE>");
-      return sb.toString();
-    }
+			sb.append("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
+			sb.append("<DATA>");
+			return sb.toString();
+		}
 
-    @Override
-    public String foot() {
-      return "</DATA>";
-    }
-  }
+		@Override
+		public String body() {
+			StringBuilder sb = new StringBuilder();
+			sb.append("<NAME>");
+			sb.append(data.getName());
+			sb.append("</NAME>");
+			sb.append("<AGE>");
+			sb.append(data.getAge());
+			sb.append("</AGE>");
+			return sb.toString();
+		}
+
+		@Override
+		public String foot() {
+			return "</DATA>";
+		}
+	}
 }

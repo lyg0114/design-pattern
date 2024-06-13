@@ -12,92 +12,93 @@ package com.designpatternstudy.behavioral.Iterator;
  */
 public class IteratorPattern {
 
-  public static void main(String[] args) {
-    Item[] items = {
-        new Item("CPU", 1000),
-        new Item("Keyboard", 2000),
-        new Item("Mouse", 3000),
-        new Item("HDD", 50)
-    };
+	public static void main(String[] args) {
+		Item[] items = {
+			new Item("CPU", 1000),
+			new Item("Keyboard", 2000),
+			new Item("Mouse", 3000),
+			new Item("HDD", 50)
+		};
 
-    Array array = new Array(items);
-    Iterator itr = array.iterator();
+		Array array = new Array(items);
+		Iterator itr = array.iterator();
 
-    while (itr.next()) {
-      Item item = (Item) itr.current();
-      System.out.println("item = " + item);
-    }
-  }
+		while (itr.next()) {
+			Item item = (Item)itr.current();
+			System.out.println("item = " + item);
+		}
+	}
 
-  interface Aggregator {
-    Iterator iterator();
-  }
+	interface Aggregator {
+		Iterator iterator();
+	}
 
-  interface Iterator {
-    boolean next();
-    Object current();
-  }
+	interface Iterator {
+		boolean next();
 
-  static class Item {
-    private String name;
-    private int cost;
+		Object current();
+	}
 
-    public Item(String name, int cost) {
-      this.name = name;
-      this.cost = cost;
-    }
+	static class Item {
+		private String name;
+		private int cost;
 
-    @Override
-    public String toString() {
-      return "Item(" +
-          "name='" + name + '\'' +
-          ", cost=" + cost +
-          ')';
-    }
-  }
+		public Item(String name, int cost) {
+			this.name = name;
+			this.cost = cost;
+		}
 
-  static class Array implements Aggregator {
+		@Override
+		public String toString() {
+			return "Item(" +
+				"name='" + name + '\'' +
+				", cost=" + cost +
+				')';
+		}
+	}
 
-    private Item[] items;
+	static class Array implements Aggregator {
 
-    public Array(Item[] items) {
-      this.items = items;
-    }
+		private Item[] items;
 
-    public Item getItem(int index) {
-      return items[index];
-    }
+		public Array(Item[] items) {
+			this.items = items;
+		}
 
-    public int getCount() {
-      return items.length;
-    }
+		public Item getItem(int index) {
+			return items[index];
+		}
 
-    @Override
-    public Iterator iterator() {
-      return new ArrayIterator(this);
-    }
-  }
+		public int getCount() {
+			return items.length;
+		}
 
-  static class ArrayIterator implements Iterator {
+		@Override
+		public Iterator iterator() {
+			return new ArrayIterator(this);
+		}
+	}
 
-    private Array array;
-    private int index;
+	static class ArrayIterator implements Iterator {
 
-    public ArrayIterator(Array array) {
-      this.array = array;
-      this.index = -1;
-    }
+		private Array array;
+		private int index;
 
-    @Override
-    public boolean next() {
-      index ++;
-      return index < array.getCount();
-    }
+		public ArrayIterator(Array array) {
+			this.array = array;
+			this.index = -1;
+		}
 
-    @Override
-    public Object current() {
-      return array.getItem(index);
-    }
-  }
+		@Override
+		public boolean next() {
+			index++;
+			return index < array.getCount();
+		}
+
+		@Override
+		public Object current() {
+			return array.getItem(index);
+		}
+	}
 
 }

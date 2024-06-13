@@ -13,38 +13,38 @@ package com.designpatternstudy.behavioral.strategy;
  */
 public class StrategyPattern {
 
-  public static void main(String[] args) {
-    SumPrinter sumPrinter = new SumPrinter();
-    sumPrinter.print(new SimpleSumStrategy(), 3);
-    System.out.println("####################################");
-    sumPrinter.print(new GaussSumStrategy(), 3);
-  }
+	public static void main(String[] args) {
+		SumPrinter sumPrinter = new SumPrinter();
+		sumPrinter.print(new SimpleSumStrategy(), 3);
+		System.out.println("####################################");
+		sumPrinter.print(new GaussSumStrategy(), 3);
+	}
 
-  static class SumPrinter {
-    public void print(SumStrategy strategy, int N) {
-      System.out.println(strategy.get(N));
-    }
-  }
+	interface SumStrategy {
+		int get(int n);
+	}
 
-  interface SumStrategy {
-    int get(int n);
-  }
+	static class SumPrinter {
+		public void print(SumStrategy strategy, int N) {
+			System.out.println(strategy.get(N));
+		}
+	}
 
-  static class SimpleSumStrategy implements SumStrategy {
-    @Override
-    public int get(int n) {
-      int sum = n;
-      for (int i = 0; i < n; i++) {
-        sum += i;
-      }
-      return sum;
-    }
-  }
+	static class SimpleSumStrategy implements SumStrategy {
+		@Override
+		public int get(int n) {
+			int sum = n;
+			for (int i = 0; i < n; i++) {
+				sum += i;
+			}
+			return sum;
+		}
+	}
 
-  static class GaussSumStrategy implements SumStrategy {
-    @Override
-    public int get(int n) {
-      return ((n + 1) * n) / 2;
-    }
-  }
+	static class GaussSumStrategy implements SumStrategy {
+		@Override
+		public int get(int n) {
+			return ((n + 1) * n) / 2;
+		}
+	}
 }
